@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./jquery-jvectormap-2.0.3.css" type="text/css" media="screen" />
+</head>
+
+<body>
+
+    <div id="world-map" style="width: 50%; height: 700px"></div>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="./seace-vector.js"></script>
+
+    <script>
+        $(function () {
+            //$('#world-map').vectorMap({ map: 'seace_map' });
+
+            var map,
+                map = new jvm.Map({
+                    container: $('#world-map'),
+                    map: 'seace_map',
+                    backgroundColor: '#C6C6C6',
+                    regionsSelectableOne: true,
+                    regionsSelectable: true,
+                    zoomMax: 3,
+                    regionStyle: {
+                        initial: {
+                            fill: '#3A6B82'
+                        },
+                        selected: {
+                            fill: '#F28530'
+                        }
+                    },
+                    onRegionClick: function (event, code) {
+                        $("#idCodigoDepartamento").val(code);
+                        $("#nombreDepartamento").val(map.getRegionName(code));
+                        console.log(event);
+                        console.log(code);
+                        console.log(map.getRegionName(code));
+                    }
+                });
+        });
+
+    </script>
+</body>
+
+</html>
